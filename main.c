@@ -15,25 +15,27 @@
 #include "modules/VECQR/SetReset.c"
 #include "modules/Compute/GetMaxValue.c"
 #include "modules/Compute/GetMinValue.c"
-#include "modules/Compute/GetMedianValue.c"
-//#include "modules/Compute/GetNormalizedValue.c"
+#include "modules/Compute/GetAvrgValue.c"
+#include "modules/Compute/GetNormalizedValue.c"
 
 //Constants
 #define SIZE 10
 
-//Describes the  Array's property
-void calculate(int Measurements[], int *used_1)
+//max value and min value and Avr value
+void calculate(int Measurements[], int used_1)
 {
-    int **used_2;
-    used_2 = &used_1;
+    float Average =  GetAvrgValue(Measurements,used_1);
+    int MaxValue = GetMaxValue(Measurements,used_1);
+    int MinValue = GetMinValue(Measurements,used_1);
+
 
     printf("--Calculate--\n");
-    
-    printf("Max Value : %d\n",GetMaxValue(Measurements,&used_2));
-    printf("Min Value : %d\n",GetMinValue(Measurements,&used_2));
-    printf("Avr Value : %d\n",GetMedianValue(Measurements,&used_2));
+    printf("Max Value : %d\n",MaxValue);
+    printf("Min Value : %d\n",MinValue);
+    printf("Avr Value : %.2f\n",Average);
+    GetNormalizedValue(Measurements,used_1,Average);
 
-    printf("-------------");
+    printf("-------------\n");
 }
 
 int main()
@@ -48,7 +50,7 @@ int main()
     //Menu
     do
     { 
-        printf("VECRQ?\n");
+        printf("VECRQ? ");
         scanf(" %c", &Letter);
 
         switch(Letter)
@@ -58,7 +60,7 @@ int main()
             break;
 
             case 'c':
-                calculate(Measurements,&used_1);
+                calculate(Measurements,used_1);
                 break;
 
             case 'r':
@@ -67,6 +69,12 @@ int main()
 
             case 'v':
                 GetValue(Measurements,used_1);
+                break;
+            default:
+                if(Letter != 'q')
+                {
+                    printf("Wrong command, please enter again.\n");
+                }    
                 break;
         }
        

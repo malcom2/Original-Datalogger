@@ -1,19 +1,24 @@
-
+//Sets value to the  fake array using the pointer used
 void SetValue(int Measurements[], int *used)
 {
-    int n = 0;
+    int n;
     
     do
     {
-        if(*used <10)
-        {
-            *used = *used +1;
-        }
         
-        printf("Enter measurement #%d or",*used);
+        
+        printf("Enter measurement #%d (or 0) ?",*used = *used+1);
         scanf("%d", &n);
-        Measurements[*used] = n;
-    
+
+        if(n != 0)
+        {
+            Measurements[*used-1] = n;
+           
+
+        }
+        printf("%d",*used);
+            
+      
     }while(n != 0 && *used < 10);
 
     if(*used >= 10)

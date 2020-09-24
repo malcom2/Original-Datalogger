@@ -3,13 +3,13 @@
 #include <stdlib.h>
 #include <time.h>
 
-int GetMinValue(int measurements[], int ***used_3)
+//Get's Min value throught fake array
+int GetMinValue(int measurements[], int used_3)
 {
+    int min = measurements[0];
     
-    
-    int min = measurements[1];
-   
-    for(int i=1; i < ***used_3; i++)
+    printf("%d",measurements[0]);
+    for(int i=0; i < used_3-1; i++)
     {
         
         if(measurements[i] < min)
@@ -18,9 +18,12 @@ int GetMinValue(int measurements[], int ***used_3)
             min = measurements[i];
         }
     }
-    
     return min;
     
 }
+
+
+
+
 
 
